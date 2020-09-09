@@ -1,4 +1,4 @@
-from bs4 import BeautifulSoup
+vefrom bs4 import BeautifulSoup
 import requests
 import telepot
 import datetime
@@ -38,4 +38,4 @@ while True:
         else:
             break
 
-#versao 1.0
+#versao 1.0.4
