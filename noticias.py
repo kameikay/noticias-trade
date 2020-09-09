@@ -1,4 +1,4 @@
-vefrom bs4 import BeautifulSoup
+from bs4 import BeautifulSoup
 import requests
 import telepot
 import datetime
