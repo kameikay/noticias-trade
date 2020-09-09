@@ -38,4 +38,4 @@ while True:
         else:
             break
 
-    
+vevv#versao 1.0
