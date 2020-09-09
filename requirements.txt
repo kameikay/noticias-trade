@@ -1,7 +1,4 @@
 bs4 == 0.0.1
-
 emoji == 0.5.4
-
 requests == 2.23.0
-
 telepot == 12.7
