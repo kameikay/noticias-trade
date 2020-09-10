@@ -15,7 +15,7 @@ emoji_perigo = emojize(":warning:", use_aliases=True)
 exclamacao = emojize(":exclamation:", use_aliases=True)
 
 while True:
-    data = requests.get('https://br.investing.com/economic-calendar/', headers=headers)
+    data = requests.get('http://br.investing.com/economic-calendar/', headers=headers)
 
     resultados = []
 
@@ -28,16 +28,16 @@ while True:
             horario = str(blocos2.get('data-event-datetime')).replace('/', '-')
             horario2 = float(str(blocos2.get('data-event-datetime'))[11:16].replace(':', '.'))
             moeda = (blocos2.find('td', {'class': 'left flagCur noWrap'})).text.strip()
-            resultados.append({'PAR': moeda, 'HORÁRIO': horario, 'IMPACTO': impacto, 'HORARIO2': horario2})
+            noticia = blocos2.find('td', {'class': 'left event'}).find('a').text.strip()
+            resultados.append({'PAR': moeda, 'HORÁRIO': horario, 'IMPACTO': impacto, 'HORARIO2': horario2, 'NOTÍCIA': noticia})
 
     while True:
         if horario_agora <= 23.58 or horario_agora >= 00.01: 
             for info in resultados:
-                if info['HORARIO2'] - 0.3 ==  horario_agora:
-                    bot.sendMessage(-481423284, f'''{exclamacao}{exclamacao}{exclamacao}ATENÇÃO, ÁGUIAS! NOTÍCIA {exclamacao}{exclamacao}{exclamacao}\nPARIDADE: {info["PAR"]}\nHORÁRIO: {info["HORÁRIO"]}\nIMPACTO: {info["IMPACTO"]}\n-----------------------------''')
-            sleep(60)
-
+                if info['HORARIO2'] - 0.3 == horario_agora:
+                    bot.sendMessage(-481423284, f'''{exclamacao}ATENÇÃO, ÁGUIAS! NOTÍCIA {exclamacao}\nPARIDADE: {info["PAR"]}\nHORÁRIO: {info["HORÁRIO"]}\nNOTÍCIA: {info["NOTÍCIA"]}\nIMPACTO: {info["IMPACTO"]}\n-----------------------------''')
+                    sleep(60)
         else:
             break
 
-#versao 1.0.4
+#versao 1.0.7 - 10/09/2020
