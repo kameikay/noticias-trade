@@ -34,10 +34,10 @@ while True:
     while True:
         if horario_agora <= 23.58 or horario_agora >= 00.01: 
             for info in resultados:
-                if info['HORARIO2'] - 0.3 == horario_agora:
+                if info['HORARIO2'] - 1 == horario_agora:
                     bot.sendMessage(-481423284, f'''{exclamacao}ATENÇÃO, ÁGUIAS! NOTÍCIA {exclamacao}\nPARIDADE: {info["PAR"]}\nHORÁRIO: {info["HORÁRIO"]}\nNOTÍCIA: {info["NOTÍCIA"]}\nIMPACTO: {info["IMPACTO"]}\n-----------------------------''')
                     sleep(60)
         else:
             break
 
-#versao 1.0.7 - 10/09/2020
+#versao 1.0.8 - 14/09/2020
