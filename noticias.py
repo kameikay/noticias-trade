@@ -37,10 +37,9 @@ while True:
                 if round(float(info['HORARIO2'] - 1), 2) == horario_agora:
                     print(f'''{exclamacao}ATENÇÃO, ÁGUIAS! NOTÍCIA {exclamacao}\nPARIDADE: {info["PAR"]}\nHORÁRIO: {info["HORÁRIO"]}\nNOTÍCIA: {info["NOTÍCIA"]}\nIMPACTO: {info["IMPACTO"]}\n-----------------------------''')
                     bot.sendMessage(-481423284, f'''{exclamacao}ATENÇÃO, ÁGUIAS! NOTÍCIA {exclamacao}\nPARIDADE: {info["PAR"]}\nHORÁRIO: {info["HORÁRIO"]}\nNOTÍCIA: {info["NOTÍCIA"]}\nIMPACTO: {info["IMPACTO"]}\n-----------------------------''')
-                sleep(0.5)
-                horario_agora = float(str(datetime.datetime.now())[11:16].replace(':', '.'))
-
-
+            sleep(60)
+            horario_agora = float(str(datetime.datetime.now())[11:16].replace(':', '.'))
+            print(horario_agora)
         else:
             break
 
