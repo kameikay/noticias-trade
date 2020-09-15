@@ -10,12 +10,12 @@ bot = telepot.Bot(token)
 
 headers = requests.utils.default_headers()
 headers.update({'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36'})
-horario_agora = float(str(datetime.datetime.now())[11:16].replace(':', '.'))
 emoji_perigo = emojize(":warning:", use_aliases=True)
 exclamacao = emojize(":exclamation:", use_aliases=True)
 
 while True:
     data = requests.get('http://br.investing.com/economic-calendar/', headers=headers)
+    horario_agora = float(str(datetime.datetime.now())[11:16].replace(':', '.'))
 
     resultados = []
 
@@ -42,4 +42,4 @@ while True:
         else:
             break
 
-#versao 1.0.8.2 - 14/09/2020
+#versao 1.0.8.3 - 15/09/2020
