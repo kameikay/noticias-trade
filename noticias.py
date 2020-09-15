@@ -31,16 +31,16 @@ while True:
             resultados.append({'PAR': moeda, 'HORÁRIO': horario, 'IMPACTO': impacto, 'HORARIO2': horario2, 'NOTÍCIA': noticia})
 
     while True:
-        horario_agora = float(str(datetime.datetime.now())[11:16].replace(':', '.')) +3
+        horario_agora = float(str(datetime.datetime.now())[11:16].replace(':', '.')) -3
         if horario_agora <= 23.59 or horario_agora >= 00.01: 
             for info in resultados:
                 if round(float(info['HORARIO2'] - 1 ), 2) == horario_agora:
                     print(f'''{exclamacao}ATENÇÃO, ÁGUIAS! NOTÍCIA {exclamacao}\nPARIDADE: {info["PAR"]}\nHORÁRIO: {info["HORÁRIO"]}\nNOTÍCIA: {info["NOTÍCIA"]}\nIMPACTO: {info["IMPACTO"]}\n-----------------------------''')
                     bot.sendMessage(-481423284, f'''{exclamacao}ATENÇÃO, ÁGUIAS! NOTÍCIA {exclamacao}\nPARIDADE: {info["PAR"]}\nHORÁRIO: {info["HORÁRIO"]}\nNOTÍCIA: {info["NOTÍCIA"]}\nIMPACTO: {info["IMPACTO"]}\n-----------------------------''')
             sleep(60)
-            horario_agora = float(str(datetime.datetime.now())[11:16].replace(':', '.')) +3
+            horario_agora = float(str(datetime.datetime.now())[11:16].replace(':', '.')) -3
             print(horario_agora)
         else:
             break
 
-#versao 1.0.8.4 - 15/09/2020
+#versao 1.0.9 - 15/09/2020
