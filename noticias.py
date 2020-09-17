@@ -44,4 +44,4 @@ while True:
             sleep(300)
             break
 
-#versao 1.0.10 - 16/09/2020
+#versao 1.0.10 - 17/09/2020
