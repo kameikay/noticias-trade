@@ -12,6 +12,7 @@ headers = requests.utils.default_headers()
 headers.update({'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36'})
 emoji_perigo = emojize(":warning:", use_aliases=True)
 exclamacao = emojize(":exclamation:", use_aliases=True)
+nao_entrar = emojize(':no_entry_sign:', use_aliases=True)
 
 while True:
     data = requests.get('http://br.investing.com/economic-calendar/', headers=headers)
@@ -36,7 +37,7 @@ while True:
             for info in resultados:
                 if round(float(info['HORARIO2'] - 1 ), 2) == horario_agora:
                     print(f'''{exclamacao}ATENÇÃO, ÁGUIAS! NOTÍCIA {exclamacao}\nPARIDADE: {info["PAR"]}\nHORÁRIO: {info["HORÁRIO"]}\nNOTÍCIA: {info["NOTÍCIA"]}\nIMPACTO: {info["IMPACTO"]}\n-----------------------------''')
-                    bot.sendMessage(-481423284, f'''{exclamacao}ATENÇÃO, ÁGUIAS! NOTÍCIA {exclamacao}\nPARIDADE: {info["PAR"]}\nHORÁRIO: {info["HORÁRIO"]}\nNOTÍCIA: {info["NOTÍCIA"]}\nIMPACTO: {info["IMPACTO"]}\n-----------------------------''')
+                    bot.sendMessage(-481423284, f'''{exclamacao}ATENÇÃO, ÁGUIAS! NOTÍCIA {exclamacao}\nPARIDADE: {info["PAR"]}\nHORÁRIO: {info["HORÁRIO"]}\nNOTÍCIA: {info["NOTÍCIA"]}\nIMPACTO: {info["IMPACTO"]}\nLembre-se: Recomendamos não operar em horários com notícias! {nao_entrar}''')
             sleep(60)
             horario_agora = float(str(datetime.datetime.now())[11:16].replace(':', '.')) -3
             print(horario_agora)
@@ -44,4 +45,4 @@ while True:
             sleep(300)
             break
 
-#versao 1.0.10 - 17/09/2020
+#versao 1.0.11 - 17/09/2020
