@@ -42,7 +42,7 @@ while True:
             horario_agora = float(str(datetime.datetime.now())[11:16].replace(':', '.')) -3
             print(horario_agora)
         else:
-            sleep(300)
+            sleep(1800)
             break
 
-#versao 1.1 - 17/09/2020
+#versao 1.1 - 19/09/2020
