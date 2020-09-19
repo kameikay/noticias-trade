@@ -5,6 +5,7 @@ import datetime
 from time import sleep
 from emoji import emojize
 
+
 token = '1389229800:AAG_wo7KQX-Qn-wV4nVK2ufOqZ9sO7yOM48'
 bot = telepot.Bot(token)
 
@@ -16,33 +17,40 @@ nao_entrar = emojize(':no_entry_sign:', use_aliases=True)
 
 while True:
     data = requests.get('http://br.investing.com/economic-calendar/', headers=headers)
-
+    horario_agora = float(str(datetime.datetime.now())[11:16].replace(':', '.')) -3
     resultados = []
+    dia_hoje = str(datetime.datetime.now())[:10]
 
     if data.status_code == requests.codes.ok:
         info = BeautifulSoup(data.text, 'html.parser')
         blocos = ((info.find('table', {'id': 'economicCalendarData'})).find('tbody')).findAll('tr', {'class': 'js-event-item'})
 
-        for blocos2 in blocos:
-            impacto = str((blocos2.find('td', {'class': 'sentiment'})).get('data-img_key')).replace('bull1', f'{emoji_perigo}').replace('bull2', f'{emoji_perigo}{emoji_perigo}').replace('bull3',f'{emoji_perigo}{emoji_perigo}{emoji_perigo}')
-            horario = str(blocos2.get('data-event-datetime')).replace('/', '-')
-            horario2 = float(str(blocos2.get('data-event-datetime'))[11:16].replace(':', '.'))
-            moeda = (blocos2.find('td', {'class': 'left flagCur noWrap'})).text.strip()
-            noticia = blocos2.find('td', {'class': 'left event'}).find('a').text.strip()
-            resultados.append({'PAR': moeda, 'HORÁRIO': horario, 'IMPACTO': impacto, 'HORARIO2': horario2, 'NOTÍCIA': noticia})
+        try:
+            for blocos2 in blocos:
+                impacto = str((blocos2.find('td', {'class': 'sentiment'})).get('data-img_key')).replace('bull1', f'{emoji_perigo}').replace('bull2', f'{emoji_perigo}{emoji_perigo}').replace('bull3',f'{emoji_perigo}{emoji_perigo}{emoji_perigo}')
+                horario = str(blocos2.get('data-event-datetime')).replace('/', '-')
+                horario2 = float(str(blocos2.get('data-event-datetime'))[11:16].replace(':', '.'))
+                dia_noticia = str(blocos2.get('data-event-datetime'))[:10].replace('/', '-')
+                moeda = (blocos2.find('td', {'class': 'left flagCur noWrap'})).text.strip()
+                noticia = blocos2.find('td', {'class': 'left event'}).find('a').text.strip()
+                resultados.append({'PAR': moeda, 'HORÁRIO': horario, 'IMPACTO': impacto, 'HORARIO2': horario2, 'NOTÍCIA': noticia})
+        except Exception as erro:
+            print(erro)
 
-    while True:
-        horario_agora = float(str(datetime.datetime.now())[11:16].replace(':', '.')) -3
-        if horario_agora <= 23.59 or horario_agora >= 00.01: 
-            for info in resultados:
-                if round(float(info['HORARIO2'] - 1 ), 2) == horario_agora:
-                    print(f'''{exclamacao}ATENÇÃO, ÁGUIAS! NOTÍCIA {exclamacao}\nPARIDADE: {info["PAR"]}\nHORÁRIO: {info["HORÁRIO"]}\nNOTÍCIA: {info["NOTÍCIA"]}\nIMPACTO: {info["IMPACTO"]}\n-----------------------------''')
-                    bot.sendMessage(-481423284, f'''{exclamacao}ATENÇÃO, ÁGUIAS! NOTÍCIA {exclamacao}\nPARIDADE: {info["PAR"]}\nHORÁRIO: {info["HORÁRIO"]}\nNOTÍCIA: {info["NOTÍCIA"]}\nIMPACTO: {info["IMPACTO"]}\nLembre-se: Recomendamos não operar em horários com notícias! {nao_entrar}''')
-            sleep(60)
+    if dia_hoje == dia_noticia:
+        while True:
             horario_agora = float(str(datetime.datetime.now())[11:16].replace(':', '.')) -3
-            print(horario_agora)
-        else:
-            sleep(1800)
-            break
-
-#versao 1.1 - 19/09/2020
+            if horario_agora <= 23.59 or horario_agora >= 00.01: 
+                for info in resultados:
+                    if round(float(info['HORARIO2'] - 1 ), 2) == horario_agora:
+                        print(f'''{exclamacao}ATENÇÃO, ÁGUIAS! NOTÍCIA {exclamacao}\nPARIDADE: {info["PAR"]}\nHORÁRIO: {info["HORÁRIO"]}\nNOTÍCIA: {info["NOTÍCIA"]}\nIMPACTO: {info["IMPACTO"]}\n-----------------------------''')
+                        #bot.sendMessage(-481423284, f'''{exclamacao}ATENÇÃO, ÁGUIAS! NOTÍCIA {exclamacao}\nPARIDADE: {info["PAR"]}\nHORÁRIO: {info["HORÁRIO"]}\nNOTÍCIA: {info["NOTÍCIA"]}\nIMPACTO: {info["IMPACTO"]}\nLembre-se: Recomendamos não operar em horários com notícias! {nao_entrar}''')
+                sleep(60)
+                horario_agora = float(str(datetime.datetime.now())[11:16].replace(':', '.')) -3
+                print(f'HORÁRIO AGORA: {horario_agora}')
+                print(f'DIA HOJE: {dia_hoje}')
+                print(f'DIA NOTÍCIA: {dia_noticia}')
+                print(f'DIA HOJE == DIA NOTICIA: {dia_hoje == dia_noticia}')
+            else:    
+                break
+#versao 1.2 - 19/09/2020
