@@ -53,4 +53,4 @@ while True:
                 print(f'DIA HOJE == DIA NOTICIA: {dia_hoje == dia_noticia}')
             else:    
                 break
-#versao 1.2 - 19/09/2020
+#versao 1.2.1 - 19/09/2020
