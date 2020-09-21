@@ -17,7 +17,6 @@ nao_entrar = emojize(':no_entry_sign:', use_aliases=True)
 
 while True:
     data = requests.get('http://br.investing.com/economic-calendar/', headers=headers)
-    horario_agora = float(str(datetime.datetime.now())[11:16].replace(':', '.')) -3
     resultados = []
     dia_hoje = str(datetime.datetime.now())[:10]
 
@@ -39,18 +38,19 @@ while True:
 
     if dia_hoje == dia_noticia:
         while True:
-            horario_agora = float(str(datetime.datetime.now())[11:16].replace(':', '.')) -3
+            horario_agora = round((float(str(datetime.datetime.now())[11:16].replace(':', '.')) -3), 2)
             if horario_agora <= 23.59 or horario_agora >= 00.01: 
                 for info in resultados:
                     if round(float(info['HORARIO2'] - 1 ), 2) == horario_agora:
                         print(f'''{exclamacao}ATENÇÃO, ÁGUIAS! NOTÍCIA {exclamacao}\nPARIDADE: {info["PAR"]}\nHORÁRIO: {info["HORÁRIO"]}\nNOTÍCIA: {info["NOTÍCIA"]}\nIMPACTO: {info["IMPACTO"]}\n-----------------------------''')
                         bot.sendMessage(-481423284, f'''{exclamacao}ATENÇÃO, ÁGUIAS! NOTÍCIA {exclamacao}\nPARIDADE: {info["PAR"]}\nHORÁRIO: {info["HORÁRIO"]}\nNOTÍCIA: {info["NOTÍCIA"]}\nIMPACTO: {info["IMPACTO"]}\nLembre-se: Recomendamos não operar em horários com notícias! {nao_entrar}''')
                 sleep(60)
-                horario_agora = float(str(datetime.datetime.now())[11:16].replace(':', '.')) -3
+                horario_agora = round((float(str(datetime.datetime.now())[11:16].replace(':', '.')) -3), 2)
                 print(f'HORÁRIO AGORA: {horario_agora}')
                 print(f'DIA HOJE: {dia_hoje}')
                 print(f'DIA NOTÍCIA: {dia_noticia}')
                 print(f'DIA HOJE == DIA NOTICIA: {dia_hoje == dia_noticia}')
             else:    
                 break
-#versao 1.2.1 - 19/09/2020
+            
+#versao 1.2.2 - 21/09/2020
