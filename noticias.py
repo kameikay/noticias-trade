@@ -38,16 +38,17 @@ while True:
             except Exception as erro:
                 print(erro)
 
-        if dia_hoje == dia_noticia:
+        while dia_hoje == dia_noticia:
             while True:
-                horario_agora = round((float(str(datetime.datetime.now())[11:16].replace(':', '.')) -3), 2)
+                horario_agora = abs(round((float(str(datetime.datetime.now())[11:16].replace(':', '.')) -3), 2))
                 if horario_agora <= 23.59 or horario_agora >= 00.01: 
                     for info in resultados:
-                        if round(float(info['HORARIO2'] - 1 ), 2) == horario_agora:
+                        if abs(round(float(info['HORARIO2'] - 1 ), 2)) == horario_agora:# and float(info['HORARIO2']) != 0.00:
                             print(f'''{exclamacao}ATENÇÃO, ÁGUIAS! NOTÍCIA {exclamacao}\nPARIDADE: {info["PAR"]}\nHORÁRIO: {info["HORÁRIO"]}\nNOTÍCIA: {info["NOTÍCIA"]}\nIMPACTO: {info["IMPACTO"]}\n-----------------------------''')
                             bot.sendMessage(-481423284, f'''{exclamacao}ATENÇÃO, ÁGUIAS! NOTÍCIA {exclamacao}\nPARIDADE: {info["PAR"]}\nHORÁRIO: {info["HORÁRIO"]}\nNOTÍCIA: {info["NOTÍCIA"]}\nIMPACTO: {info["IMPACTO"]}\nLembre-se: Recomendamos não operar em horários com notícias! {nao_entrar}''')
                     sleep(60)
                     horario_agora = round((float(str(datetime.datetime.now())[11:16].replace(':', '.')) -3), 2)
+                    dia_hoje = str(datetime.datetime.now())[:10]
                     print(f'HORÁRIO AGORA: {horario_agora}')
                     print(f'DIA HOJE: {dia_hoje}')
                     print(f'DIA NOTÍCIA: {dia_noticia}')
@@ -58,4 +59,4 @@ while True:
         else:
             break
             
-#versao 1.2.3 - 21/09/2020
+#versao 1.2.4 - 22/09/2020
