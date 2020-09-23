@@ -48,7 +48,6 @@ while True:
                             bot.sendMessage(-481423284, f'''{exclamacao}ATENÇÃO, ÁGUIAS! NOTÍCIA {exclamacao}\nPARIDADE: {info["PAR"]}\nHORÁRIO: {info["HORÁRIO"]}\nNOTÍCIA: {info["NOTÍCIA"]}\nIMPACTO: {info["IMPACTO"]}\nLembre-se: Recomendamos não operar em horários com notícias! {nao_entrar}''')
                     sleep(60)
                     horario_agora = round((float(str(datetime.datetime.now())[11:16].replace(':', '.')) -3), 2)
-                    dia_hoje = str(datetime.datetime.now())[:10]
                     print(f'HORÁRIO AGORA: {horario_agora}')
                     print(f'DIA HOJE: {dia_hoje}')
                     print(f'DIA NOTÍCIA: {dia_noticia}')
