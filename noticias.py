@@ -38,6 +38,8 @@ while True:
             except Exception as erro:
                 print(erro)
 
+            print(f'DIA HOJE == DIA NOTICIA: {dia_hoje == dia_noticia}')
+
         while dia_hoje == dia_noticia:
             while True:
                 horario_agora = abs(round((float(str(datetime.datetime.now())[11:16].replace(':', '.')) -3), 2))
@@ -51,7 +53,6 @@ while True:
                     print(f'HORÁRIO AGORA: {horario_agora}')
                     print(f'DIA HOJE: {dia_hoje}')
                     print(f'DIA NOTÍCIA: {dia_noticia}')
-                    print(f'DIA HOJE == DIA NOTICIA: {dia_hoje == dia_noticia}')
                 else:    
                     dia_hoje = str(datetime.datetime.now())[:10]
                     break
