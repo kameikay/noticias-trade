@@ -54,9 +54,10 @@ while True:
                     print(f'DIA NOTÍCIA: {dia_noticia}')
                     print(f'DIA HOJE == DIA NOTICIA: {dia_hoje == dia_noticia}')
                 else:    
+                    dia_hoje = str(datetime.datetime.now())[:10]
                     break
 
         else:
             break
             
-#versao 1.2.4 - 22/09/2020
+#versao 1.2.5 - 22/09/2020
