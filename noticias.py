@@ -40,7 +40,7 @@ while True:
 
         while dia_hoje == dia_noticia:
             while True:
-                horario_agora = abs(round((float(str(datetime.datetime.now())[11:16].replace(':', '.')) -3), 2))
+                horario_agora = round((float(str(datetime.datetime.now())[11:16].replace(':', '.')) -3), 2)
                 if horario_agora <= 23.59 or horario_agora >= 00.01: 
                     for info in resultados:
                         if abs(round(float(info['HORARIO2'] - 1 ), 2)) == horario_agora:# and float(info['HORARIO2']) != 0.00:
@@ -59,4 +59,4 @@ while True:
         else:
             break
             
-#versao 1.2.5 - 22/09/2020
+#versao 1.2.6 - 23/09/2020
