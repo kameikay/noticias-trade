@@ -43,7 +43,7 @@ while True:
                 horario_agora = round((float(str(datetime.datetime.now())[11:16].replace(':', '.')) -3), 2)
                 if horario_agora <= 23.59 or horario_agora >= 00.01: 
                     for info in resultados:
-                        if abs(round(float(info['HORARIO2'] - 1 ), 2)) == horario_agora:# and float(info['HORARIO2']) != 0.00:
+                        if round(float(info['HORARIO2'] - 1 ), 2) == horario_agora:# and float(info['HORARIO2']) != 0.00:
                             print(f'''{exclamacao}ATENÇÃO, ÁGUIAS! NOTÍCIA {exclamacao}\nPARIDADE: {info["PAR"]}\nHORÁRIO: {info["HORÁRIO"]}\nNOTÍCIA: {info["NOTÍCIA"]}\nIMPACTO: {info["IMPACTO"]}\n-----------------------------''')
                             bot.sendMessage(-481423284, f'''{exclamacao}ATENÇÃO, ÁGUIAS! NOTÍCIA {exclamacao}\nPARIDADE: {info["PAR"]}\nHORÁRIO: {info["HORÁRIO"]}\nNOTÍCIA: {info["NOTÍCIA"]}\nIMPACTO: {info["IMPACTO"]}\nLembre-se: Recomendamos não operar em horários com notícias! {nao_entrar}''')
                     sleep(60)
