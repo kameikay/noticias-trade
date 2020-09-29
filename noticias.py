@@ -34,7 +34,8 @@ while True:
                     dia_noticia = str(blocos2.get('data-event-datetime'))[:10].replace('/', '-')
                     moeda = (blocos2.find('td', {'class': 'left flagCur noWrap'})).text.strip()
                     noticia = blocos2.find('td', {'class': 'left event'}).find('a').text.strip()
-                    resultados.append({'PAR': moeda, 'HORÁRIO': horario, 'IMPACTO': impacto, 'HORARIO2': horario2, 'NOTÍCIA': noticia})
+                    if len(impacto) >= 2:
+                        resultados.append({'PAR': moeda, 'HORÁRIO': horario, 'IMPACTO': impacto, 'HORARIO2': horario2, 'NOTÍCIA': noticia})
             except Exception as erro:
                 print(erro)
 
@@ -59,4 +60,4 @@ while True:
         else:
             break
             
-#versao 1.2.6 - 23/09/2020
+#versao 1.2.7 - 28/09/2020
