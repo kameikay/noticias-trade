@@ -60,4 +60,4 @@ while True:
         else:
             break
             
-#versao 2.0 29/09/2020
+#versao 2.1 29/09/2020
