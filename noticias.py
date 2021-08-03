@@ -6,7 +6,7 @@ from time import sleep
 from emoji import emojize
 
 
-token = '1389229800:AAG_wo7KQX-Qn-wV4nVK2ufOqZ9sO7yOM48'
+token = 'INSERT TOKEN HERE'
 bot = telepot.Bot(token)
 
 headers = requests.utils.default_headers()
